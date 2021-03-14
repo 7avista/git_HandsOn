@@ -16,7 +16,9 @@ args = parser.parse_args()                  # calls  parse_args()
 
 args.seq = args.seq.upper()                 #  converts to uppercase
 if re.search('^[ACGTU]+$', args.seq):       # defines the re expression in var
-    if re.search('T', args.seq):            #  looks for T in var to diff to DNA
+    if re.search('T+U+', args.seq) or re.search('U+T+',args.seq) or re.search('T+(.)*U+',args.seq) or re.search('U+(.)*T+',args.seq):
+        print ('The sequence is inconsistent')
+    elif re.search('T', args.seq):            #  looks for T in var to diff to DNA
         print ('The sequence is DNA')
     elif re.search('U', args.seq):          # looks for U in var to diff to RNA
         print ('The sequence is RNA')
